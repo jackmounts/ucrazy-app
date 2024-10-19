@@ -26,14 +26,18 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   _buildSettingPage(),
                   _buildGridPage([
-                    _buildWidget('Classifica Giochi', Colors.red, '/widget1'),
-                    _buildWidget('Veto Tracker', Colors.green, '/widget2'),
-                    _buildWidget('1v1 Me', Colors.yellow, '/widget3'),
-                    _buildWidget('Perudo', Colors.orange, '/widget4'),
+                    _buildWidget(
+                        'Classifica\nGiochi', Colors.red, '/widget1', 'giochi'),
+                    _buildWidget(
+                        '1v1 Me', Colors.yellow, '/widget3', 'onevsone'),
+                    _buildWidget('Perudo', Colors.orange, '/widget4', 'perudo'),
+                    _buildWidget(
+                        'Chiamala', Colors.purple, '/widget6', 'chiamala'),
                   ]),
                   _buildGridPage([
-                    _buildWidget('Cosa Mimi', Colors.cyan, '/widget5'),
-                    _buildWidget('Chiamala', Colors.purple, '/widget6'),
+                    _buildWidget('Cosa Mimi', Colors.cyan, '/widget5', 'mimi'),
+                    _buildWidget(
+                        'Veto Tracker', Colors.green, '/widget2', 'veto'),
                     _buildEmpty(),
                     _buildEmpty(),
                   ]),
@@ -82,15 +86,18 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildWidget(String title, Color color, String route) {
+  Widget _buildWidget(String title, Color color, String route, String iconUrl) {
     return GestureDetector(
       onTap: () {
         // Add navigation or functionality here
       },
       child: Container(
-        // margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-          color: color,
+          image: DecorationImage(
+              image: AssetImage(
+                  'lib/assets/images/$iconUrl.png'), // Path to your image
+              fit: BoxFit.cover,
+              opacity: 0.7),
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Center(
@@ -101,8 +108,8 @@ class _HomePageState extends State<HomePage> {
             overflow: TextOverflow.visible,
             style: const TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20.0, // Increase the font size
+              fontWeight: FontWeight.w800,
+              fontSize: 28.0, // Increase the font size
             ),
           ),
         ),
@@ -111,10 +118,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _settingsButton() {
-    return Center(
-        child: Container(
-      child: const Icon(Icons.settings, color: Colors.white, size: 50.0),
-    ));
+    return const Center(
+        child: Icon(Icons.settings, color: Colors.white, size: 50.0));
   }
 
   Widget _buildSettingPage() {

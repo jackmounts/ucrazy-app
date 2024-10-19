@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:ucrazy_app/src/core/home/home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() {
   runApp(const MyApp());
+  initFirebase();
+}
+
+void initFirebase() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {
